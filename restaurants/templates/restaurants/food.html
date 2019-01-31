@@ -1,0 +1,9 @@
+{%load static%}
+<h1>All Foods</h1>
+
+{%for food in foods.all%}
+{{food.name}}<br>
+<img src="{{food.image.url}}" height="200"><br>
+{{food.description}}<br>
+${{food.price}}
+{%endfor%}
