@@ -4,3 +4,6 @@ from .models import Food
 def food(request):
     foods = Food.objects
     return render(request, 'restaurants/food.html', {'foods': foods})
+
+def home(request):
+    return render(request, 'restaurants/home.html')
