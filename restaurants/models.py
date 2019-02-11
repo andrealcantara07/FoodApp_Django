@@ -6,3 +6,6 @@ class Food(models.Model):
     description = models.CharField(max_length = 300)
     price = models.FloatField(default = 0)
     image = models.ImageField(upload_to='food_images/')
+
+class OrderItem(models.Model):
+    food = models.OneToOneField(Food, on_delete=models.SET_NULL, null=True)
