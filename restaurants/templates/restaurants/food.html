@@ -23,7 +23,16 @@
     <td>{{food.name}}</td>
     <td>{{food.description}}</td>
     <td>${{food.price|floatformat:2}}</td>
+    {% if food in current_order_products %}
+
+    <td><a href="{% url 'cart' %}"><button type="button" class="btn btn-primary">Go to Cart</button></a></td>
+
+    {% else %}
+
     <td><a href="{% url 'add_to_cart' food.id%}"><button type="button" class="btn btn-primary">Add Cart</button></a></td>
+
+    {% endif %}
+
   </tr>
 {%endfor%}
 </tbody>
