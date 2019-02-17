@@ -19,11 +19,14 @@ import restaurants.views
 from django.conf import settings
 from django.conf.urls.static import static
 
+app_name = 'restaurants'
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('food/', restaurants.views.food, name='food'),
     path('', restaurants.views.home, name='home'),
+    path('cart/', restaurants.views.cart, name='cart'),
+    path('add-to-cart/<int:item_id>', restaurants.views.add_to_cart, name='add_to_cart'),
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

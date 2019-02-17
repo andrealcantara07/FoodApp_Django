@@ -23,12 +23,12 @@
     <td>{{food.name}}</td>
     <td>{{food.description}}</td>
     <td>${{food.price|floatformat:2}}</td>
-    <td><button type="button" class="btn btn-primary">Add Cart</button></td>
+    <td><a href="{% url 'add_to_cart' food.id%}"><button type="button" class="btn btn-primary">Add Cart</button></a></td>
   </tr>
 {%endfor%}
 </tbody>
 </table>
 <button><a href ="/">Home</a></button>
-{% endblock %}
-</div>
 
+</div>
+{% endblock %}
