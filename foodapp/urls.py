@@ -27,7 +27,9 @@ urlpatterns = [
     path('', restaurants.views.home, name='home'),
     path('cart/', restaurants.views.cart, name='cart'),
     path('add-to-cart/<int:item_id>', restaurants.views.add_to_cart, name='add_to_cart'),
+    path('item/delete/<int:item_id>', restaurants.views.delete_from_cart, name='delete_from_cart')
 ]
 
 urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 urlpatterns += static(settings.FOOD_URL, document_root=settings.FOOD_ROOT)
+urlpatterns += static(settings.CART_URL, document_root=settings.CART_ROOT)

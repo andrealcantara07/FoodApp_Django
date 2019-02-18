@@ -55,4 +55,4 @@ class Order(models.Model):
         return self.items.all()
 
     def get_cart_total(self):
-        return sum([item.product.price for item in self.items.all()])
+        return sum([item.food.price for item in self.items.all()])

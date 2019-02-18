@@ -8,6 +8,7 @@ import datetime
 from datetime import date
 import random
 import string
+from django.urls import reverse
 # Create your views here.
 
 '''
@@ -49,6 +50,15 @@ def my_profile(request):
 
     return render(request, 'profile.html', context )
 
+def get_user_pending_order(request):
+
+    user_profile = get_object_or_404(Profile, user=request.user)
+    order = Order.objects.filter(owner=user_profile, is_ordered=False)
+
+    if order.exists():
+        return order[0]
+    return 0
+
 
 '''
 /--------------
@@ -80,8 +90,31 @@ def add_to_cart(request, **kwargs):
 
     messages.info(request, 'Item added to cart')
     return redirect('/food/')
+
+
+
+def delete_from_cart(request, item_id):
+    item_to_delete = OrderItem.objects.filter(pk=item_id)
+    if item_to_delete.exists():
+        item_to_delete[0].delete()
+        messages.info(request, "Item has been deleted")
+    return redirect('/cart/')
+
+
 def cart(request, **kwargs):
-    return render(request, 'restaurants/cart.html')
+    existing_order = get_user_pending_order(request)
+    context = {
+        'order': existing_order
+    }
+    return render(request, 'restaurants/cart.html', context)
+
+def checkout(request, **kwargs):
+    existing_order = get_user_pending_order(request)
+    context = {
+        'order': existing_order
+    }
+    return render(request, 'restaurants/checkout.html', context)
+
 
 
 

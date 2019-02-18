@@ -49,6 +49,12 @@ a {
         .navbar.fixed-left .navbar-nav .nav-item .dropdown-menu {
           left: 100%; } }
 
+
+
+#messages{
+  color: blue;
+}
+
 /*------------
  FOOD CONTENT
 ------------*/
