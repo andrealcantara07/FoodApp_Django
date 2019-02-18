@@ -48,11 +48,22 @@ a {
           vertical-align: baseline; }
         .navbar.fixed-left .navbar-nav .nav-item .dropdown-menu {
           left: 100%; } }
-
-
+body{
+  background-color: yellow;
+}
+.title{
+  text-align: center;
+  color: green;
+}
 
 #messages{
-  color: blue;
+  color: green;
+  text-align: center;
+  margin-top: 20px;
+  font-size: 2em;
+}
+#messages ul{
+  list-style-type: none;
 }
 
 /*------------
