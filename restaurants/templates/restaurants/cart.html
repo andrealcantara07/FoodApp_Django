@@ -1,0 +1,75 @@
+
+{% extends "restaurants/home.html" %}
+
+{% block content %}
+
+
+Hello World
+
+<table class="table table-hover">
+    <thead>
+      <tr>
+        <th scope="col">Image</th>
+        <th scope="col">Name</th>
+        <th scope="col">Description</th>
+        <th scope="col">Price</th>
+        <th scope="col">Remove</th>
+      </tr>
+    </thead>
+    <tbody>
+
+{% for item in order.get_cart_items %}
+
+<tr>
+    <th scope="row"><img src="{{item.food.image.url}}" height="100" width="150"></th>
+    <td>{{item.food.name}}</td>
+    <td>{{item.food.description}}</td>
+    <td>${{item.food.price|floatformat:2}}</td>
+    <td><a href="{% url 'delete_from_cart' item.id%}"><button type="button" class="btn btn-danger">Delete</button></a></td>
+  </tr>
+
+  {% empty %}
+  <tr>
+      <td>You have not added any items yet.</td>
+  </tr>
+{% endfor %}
+
+<tr>
+    {% if order.get_cart_total != None %}
+    <td colspan= 3>
+        <strong class='pull-right'>Order Total:</strong>
+    </td>
+
+    <td colspan= 5>
+        <strong>${{order.get_cart_total|floatformat:2}}</strong>
+    </td>
+
+    {% endif %}
+</tr>
+
+
+<tr>
+    <td colspan=4>
+        <a href="{% url 'food' %}" class ="btn btn-warning pull-left">
+        {% if order.get_cart_items != None %}
+           Add Items
+        {% elif order.get_cart_items %}
+            Continue Looking 
+        </a>
+        {% endif %}
+    </td>
+    {% if order.get_cart_items %}
+    <td colspan=2>
+        
+        <a href="{% url 'food' %}" class ="btn btn-primary">Order It</a>
+        
+    </td>
+
+    {% endif %}
+</tr>
+</tbody>
+</table>
+<button><a href ="/">Home</a></button>
+
+{% endblock %}
+
