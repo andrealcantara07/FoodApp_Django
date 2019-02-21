@@ -115,6 +115,9 @@ def checkout(request, **kwargs):
     }
     return render(request, 'restaurants/checkout.html', context)
 
+def checkout(request):
+    messages.info(request, 'Your order is being delivered')
+    return render(request, 'restaurants/checkout.html')
 
 
 
